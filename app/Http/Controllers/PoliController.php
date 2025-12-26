@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Poli;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller; // Pastikan ini di-import jika berada di namespace yang berbeda
+use App\Http\Controllers\Controller;
 
 class PoliController extends Controller
 {
@@ -14,7 +14,6 @@ class PoliController extends Controller
     public function index()
     {
         $polis = Poli::all();
-        // Memastikan view yang direturn benar: resources/views/admin/polis/index.blade.php
         return view('admin.polis.index', compact('polis'));
     }
 
@@ -38,7 +37,6 @@ class PoliController extends Controller
 
         Poli::create($validated);
 
-        // Menggunakan 'message' dan 'type' untuk konsistensi flash message
         return redirect()->route('polis.index')
             ->with('message', 'Poli berhasil ditambahkan.')
             ->with('type', 'success');
@@ -66,7 +64,6 @@ class PoliController extends Controller
         $poli = Poli::findOrFail($id);
         $poli->update($validated);
 
-        // Menggunakan 'message' dan 'type' untuk konsistensi flash message
         return redirect()->route('polis.index')
             ->with('message', 'Poli berhasil diupdate.')
             ->with('type', 'success');
@@ -78,9 +75,8 @@ class PoliController extends Controller
     public function destroy($id)
     {
         $poli = Poli::findOrFail($id);
-        $poli->delete(); // PERBAIKAN: Cukup menggunakan delete()
+        $poli->delete();
 
-        // Menggunakan 'message' dan 'type' untuk konsistensi flash message
         return redirect()->route('polis.index')
             ->with('message', 'Poli berhasil dihapus.')
             ->with('type', 'success');

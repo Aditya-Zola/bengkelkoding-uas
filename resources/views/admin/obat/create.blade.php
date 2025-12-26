@@ -7,7 +7,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('obat.store') }}" method="POST">
+                        <form action="{{ route('admin.obat.store') }}" method="POST">
                             @csrf
 
                             <div class="row">
@@ -54,7 +54,7 @@
                                 <button type="submit" class="btn btn-success">
                                     <i class="fas fa-save"></i> Simpan
                                 </button>
-                                <a href="{{ route('obat.index') }}" class="btn btn-secondary">
+                                <a href="{{ route('admin.obat.index') }}" class="btn btn-secondary">
                                     <i class="fas fa-arrow-left"></i> Kembali
                                 </a>
                             </div>

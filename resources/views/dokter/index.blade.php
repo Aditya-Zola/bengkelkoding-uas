@@ -13,7 +13,7 @@
 
                 <h1 class="mb-4">Data Dokter</h1>
 
-                <a href="{{ route('dokter.create') }}" class="btn btn-primary mb-3">
+                <a href="{{ route('admin.dokter.create') }}" class="btn btn-primary mb-3">
                     <i class="fas fa-plus"></i> Tambah dokter
                 </a>
 
@@ -44,10 +44,10 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <a href="{{ route('dokter.edit', $dokter->id) }}" class="btn btn-sm btn-warning">
+                                        <a href="{{ route('admin.dokter.edit', $dokter->id) }}" class="btn btn-sm btn-warning">
                                             <i class="fas fa-edit"></i>Edit
                                         </a>
-                                        <form action="{{ route('dokter.destroy', $dokter->id) }}" method="POST" style="display: inline-block;">
+                                        <form action="{{ route('admin.dokter.destroy', $dokter->id) }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus dokter ini ?')">

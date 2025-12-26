@@ -8,7 +8,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('obat.update', $obat->id) }}" method="POST">
+                        <form action="{{ route('admin.obat.update', $obat->id) }}" method="POST">
                             @csrf
                             @method('PUT')
 
@@ -57,7 +57,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-save"></i> Update
                                 </button>
-                                <a href="{{ route('obat.index') }}" class="btn btn-secondary">
+                                <a href="{{ route('admin.obat.index') }}" class="btn btn-secondary">
                                     <i class="fas fa-arrow-left"></i> Kembali
                                 </a>
                             </div>
@@ -69,5 +69,4 @@
         </div>
     </div>
 </x-layouts.app>
-edit.blade.txt
-Menampilkan edit.blade.txt.
+

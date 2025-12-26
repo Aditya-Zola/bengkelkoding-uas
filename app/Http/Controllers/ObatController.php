@@ -37,7 +37,7 @@ class ObatController extends Controller
 
         Obat::create($request->all());
 
-        return redirect()->route('obat.index')
+        return redirect()->route('admin.obat.index')
             ->with('message', 'Data Obat Berhasil ditambahkan')
             ->with('type', 'success');
     }
@@ -65,7 +65,7 @@ class ObatController extends Controller
         $obat = Obat::findOrFail($id);
         $obat->update($request->all());
 
-        return redirect()->route('obat.index')
+        return redirect()->route('admin.obat.index')
             ->with('message', 'Data Obat Berhasil diubah')
             ->with('type', 'success');
     }
@@ -78,7 +78,7 @@ class ObatController extends Controller
         $obat = Obat::findOrFail($id);
         $obat->delete();
 
-        return redirect()->route('obat.index')
+        return redirect()->route('admin.obat.index')
             ->with('message', 'Data Obat Berhasil dihapus')
             ->with('type', 'success');
     }

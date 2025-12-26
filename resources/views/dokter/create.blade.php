@@ -5,7 +5,7 @@
                 <h1 class="mb-4">Tambah dokter</h1>
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('dokter.store') }}" method="POST">
+                        <form action="{{ route('admin.dokter.store') }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -91,7 +91,7 @@
                                 <button type="submit" class="btn btn-success">
                                     <i class="fas fa-save"></i> Simpan
                                 </button>
-                                <a href="{{ route('dokter.index') }}" class="btn btn-secondary">Batal</a>
+                                <a href="{{ route('admin.dokter.index') }}" class="btn btn-secondary">Batal</a>
                             </div>
                         </form>
                     </div>

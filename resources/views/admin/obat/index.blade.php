@@ -13,7 +13,7 @@
 
                 <h1 class="mb-4">Data Obat</h1>
 
-                <a href="{{ route('obat.create') }}" class="btn btn-primary mb-3">
+                <a href="{{ route('admin.obat.create') }}" class="btn btn-primary mb-3">
                     <i class="fas fa-plus"></i> Tambah Obat
                 </a>
 
@@ -36,14 +36,14 @@
                                     <td>{{ $obat->kemasan }}</td>
                                     <td>{{ number_format($obat->harga, 0, ',', '.') }}</td>
                                     <td style="width: 150px;">
-                                        {{-- Tombol Edit --}}
-                                        <a href="{{ route('obat.edit', $obat->id) }}"
+                                        {{-- Edit --}}
+                                        <a href="{{ route('admin.obat.edit', $obat->id) }}"
                                             class="btn btn-sm btn-warning">
                                             <i class="fas fa-edit"></i> Edit
                                         </a>
 
-                                        {{-- Tombol Hapus --}}
-                                        <form action="{{ route('obat.destroy', $obat->id) }}" method="POST"
+                                        {{-- Hapus --}}
+                                        <form action="{{ route('admin.obat.destroy', $obat->id) }}" method="POST"
                                             style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-// use App\Http\Controllers\Controller; <-- Hapus baris ini (tidak perlu)
 
 class PasienController extends Controller
 {
@@ -41,7 +40,6 @@ class PasienController extends Controller
             'role' => 'pasien',
         ]);
 
-        // Perbaikan typo 'succes' menjadi 'success'
         return redirect()->route('admin.pasien.index')->with('message', 'Data Pasien berhasil di tambah')->with('type','success');
     }
 
@@ -75,7 +73,6 @@ class PasienController extends Controller
 
         $pasien->update($updateData);
 
-        // Perbaikan typo 'succes' menjadi 'success'
         return redirect()->route('admin.pasien.index')
             ->with('message','Data Pasien Berhasil di Update')
             ->with('type','success');
@@ -83,7 +80,6 @@ class PasienController extends Controller
 
     public function destroy(User $pasien){
         $pasien->delete();
-        // Perbaikan pesan sukses dan typo 'succes' menjadi 'success'
         return redirect()->route('admin.pasien.index')
             ->with('message','Data Pasien Berhasil di Hapus')
             ->with('type','success');

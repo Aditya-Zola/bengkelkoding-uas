@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
                 'nama' => 'Pasien',
                 'email' => 'pasien@gmail.com',
                 'password' => Hash::make('pasien'),
-                'role' => 'pasien', // Role yang dibutuhkan
+                'role' => 'pasien',
                 'alamat' => 'Alamat Pasien',
                 'no_ktp' => '3333333333333333',
                 'no_hp' => '083333333333',

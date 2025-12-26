@@ -18,12 +18,11 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
+        @include('components.partials.header')
+
         @include('components.partials.sidebar')
 
         <div class="content-wrapper">
-            @include('components.partials.header')
-
-            {{-- Konten Utama --}}
             {{ $slot }}
         </div>
 

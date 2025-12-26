@@ -17,7 +17,7 @@
 
                 <h1 class="mb-4">Data Polis</h1>
 
-                <a href="{{ route('polis.create') }}" class="btn btn-primary mb-3">
+                <a href="{{ route('admin.polis.create') }}" class="btn btn-primary mb-3">
                     <i class="fas fa-plus"></i> Tambah Poli
                 </a>
 
@@ -38,10 +38,10 @@
                                     <td>{{ $poli->nama_poli }}</td>
                                     <td>{{ $poli->keterangan }}</td>
                                     <td style="width: 150px;">
-                                        <a href="{{ route('polis.edit', $poli->id) }}" class="btn btn-sm btn-warning">
+                                        <a href="{{ route('admin.polis.edit', $poli->id) }}" class="btn btn-sm btn-warning">
                                             <i class="fas fa-edit"></i>Edit
                                         </a>
-                                        <form action="{{ route('polis.destroy', $poli->id) }}" method="POST" style="display: inline-block;">
+                                        <form action="{{ route('admin.polis.destroy', $poli->id) }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus Poli ini ?')">
