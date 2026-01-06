@@ -48,6 +48,8 @@
                                 @error('harga')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <label for="stok" class="form-label">Stok <span class="text-danger">*</span></label>
+                                <input type="number" name="stok" id="stok" class="form-control" value="{{ old('stok') }}" required min="0">
                             </div>
 
                             <div class="form-group mt-4">

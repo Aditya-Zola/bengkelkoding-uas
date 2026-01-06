@@ -25,6 +25,8 @@
                                 <th>Nama Obat</th>
                                 <th>Kemasan</th>
                                 <th>Harga</th>
+                                {{-- PERBAIKAN: Menambahkan Header Kolom Stok --}}
+                                <th>Stok</th>
                                 <th style="width: 150px;">Aksi</th>
                             </tr>
                         </thead>
@@ -34,7 +36,19 @@
                                     <td>{{ $obat->id }}</td>
                                     <td>{{ $obat->nama_obat }}</td>
                                     <td>{{ $obat->kemasan }}</td>
-                                    <td>{{ number_format($obat->harga, 0, ',', '.') }}</td>
+                                    <td>Rp {{ number_format($obat->harga, 0, ',', '.') }}</td>
+
+                                    {{-- PERBAIKAN: Menambahkan Data Stok dengan Indikator Warna --}}
+                                    <td>
+                                        @if($obat->stok <= 0)
+                                            <span class="badge bg-danger">Habis (0)</span>
+                                        @elseif($obat->stok < 10)
+                                            <span class="badge bg-warning text-dark">{{ $obat->stok }}</span>
+                                        @else
+                                            <span class="badge bg-success">{{ $obat->stok }}</span>
+                                        @endif
+                                    </td>
+
                                     <td style="width: 150px;">
                                         {{-- Edit --}}
                                         <a href="{{ route('admin.obat.edit', $obat->id) }}"
@@ -56,7 +70,8 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">Belum ada Data Obat</td>
+                                    {{-- Sesuaikan colspan karena jumlah kolom bertambah --}}
+                                    <td colspan="6" class="text-center">Belum ada Data Obat</td>
                                 </tr>
                             @endforelse
                         </tbody>

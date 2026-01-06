@@ -33,6 +33,7 @@ class ObatController extends Controller
             'nama_obat' => 'required|string|max:255',
             'kemasan' => 'nullable|string',
             'harga' => 'required|integer|min:0',
+            'stok' => 'required|integer|min:0',
         ]);
 
         Obat::create($request->all());
@@ -60,6 +61,7 @@ class ObatController extends Controller
             'nama_obat' => 'required|string|max:255',
             'kemasan' => 'nullable|string',
             'harga' => 'required|integer|min:0',
+            'stok' => 'required|integer|min:0',
         ]);
 
         $obat = Obat::findOrFail($id);

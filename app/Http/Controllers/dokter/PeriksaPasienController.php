@@ -28,7 +28,9 @@ class PeriksaPasienController extends Controller
 
     public function create($id)
     {
-        $obats = Obat::all();
+        // Opsional: Hanya tampilkan obat yang stoknya > 0
+        $obats = Obat::where('stok', '>', 0)->get();
+
         return view('dokter.periksa-pasien.create', compact('obats', 'id'));
     }
 
@@ -42,6 +44,18 @@ class PeriksaPasienController extends Controller
 
         $obatIds = json_decode($request->obat_json, true);
 
+        // --- 1. VALIDASI STOK SEBELUM DISIMPAN ---
+        // Cek apakah ada obat yang stoknya sudah habis tapi tetap dipilih
+        foreach ($obatIds as $idObat) {
+            $obatCek = Obat::find($idObat);
+            if ($obatCek && $obatCek->stok <= 0) {
+                return back()
+                    ->withInput()
+                    ->with('error', 'Gagal menyimpan! Stok obat "' . $obatCek->nama_obat . '" sudah habis.');
+            }
+        }
+
+        // --- 2. SIMPAN DATA PERIKSA (HEADER) ---
         $periksa = Periksa::create([
             'id_daftar_poli' => $request->id_daftar_poli,
             'tgl_periksa' => now(),
@@ -49,13 +63,23 @@ class PeriksaPasienController extends Controller
             'biaya_periksa' => $request->biaya_periksa + 150000,
         ]);
 
+        // --- 3. SIMPAN DETAIL & KURANGI STOK ---
         foreach ($obatIds as $idObat) {
-            DetailPeriksa::create([
-                'id_periksa' => $periksa->id,
-                'id_obat' => $idObat,
-            ]);
+            $obat = Obat::find($idObat);
+
+            if ($obat) {
+                // Simpan ke tabel detail
+                DetailPeriksa::create([
+                    'id_periksa' => $periksa->id,
+                    'id_obat' => $idObat,
+                ]);
+
+                // Kurangi stok obat
+                $obat->decrement('stok');
+            }
         }
 
-        return redirect()->route('periksa-pasien.index')->with('success', 'Data periksa berhasil disimpan.');
+        return redirect()->route('periksa-pasien.index')
+            ->with('success', 'Data periksa berhasil disimpan dan stok obat telah diperbarui.');
     }
 }
